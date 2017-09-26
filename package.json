@@ -1,0 +1,42 @@
+{
+  "name": "jha-twitter-project",
+  "version": "0.0.1",
+  "description": "Digest Twitter feed into meaningful data",
+  "main": "index.js",
+  "scripts": {
+    "lint": "standard --fix --verbose",
+    "mocha": "mocha",
+    "test": "yarn run lint && yarn run cover",
+    "test:watch": "nodemon --exec \"mocha || exit 1\"",
+    "cover": "istanbul cover _mocha"
+  },
+  "author": "Kent Safranski <fluidbyte>",
+  "license": "ISC",
+  "devDependencies": {
+    "chai": "^4.1.2",
+    "dirty-chai": "^2.0.1",
+    "istanbul": "^0.4.5",
+    "mocha": "^3.5.3",
+    "sinon": "^4.0.0",
+    "sinon-chai": "^2.13.0",
+    "standard": "^10.0.3"
+  },
+  "standard": {
+    "ignore": [
+      "coverage"
+    ],
+    "globals": [
+      "describe",
+      "before",
+      "beforeEach",
+      "after",
+      "afterEach",
+      "it",
+      "expect",
+      "sinon",
+      "proxyquire",
+      "sandbox",
+      "xit"
+    ]
+  }
+}
