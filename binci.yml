@@ -6,7 +6,7 @@ tasks:
   install:production: yarn install --production
   lint: yarn run lint
   mocha: yarn run mocha
+  cover: yarn run cover
   test: yarn run test
   test:watch: yarn run test
-  cover: yarn run cover
   up: node index.js
