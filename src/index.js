@@ -1,3 +1,3 @@
-module.exports = (a, b) => {
-  return a + b
-}
+const twitter = require('./lib/twitter')
+
+twitter()
