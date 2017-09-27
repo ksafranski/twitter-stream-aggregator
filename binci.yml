@@ -2,8 +2,11 @@ from: mhart/alpine-node:8
 tasks:
   env: env | sort
   shell: /bin/sh
+  install: yarn install
+  install:production: yarn install --production
   lint: yarn run lint
   mocha: yarn run mocha
   test: yarn run test
   test:watch: yarn run test
   cover: yarn run cover
+  up: node index.js

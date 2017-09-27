@@ -6,9 +6,9 @@
   "scripts": {
     "lint": "standard --fix --verbose",
     "mocha": "mocha",
+    "cover": "istanbul cover _mocha"
     "test": "yarn run lint && yarn run cover",
     "test:watch": "nodemon --exec \"mocha || exit 1\"",
-    "cover": "istanbul cover _mocha"
   },
   "author": "Kent Safranski <fluidbyte>",
   "license": "ISC",
