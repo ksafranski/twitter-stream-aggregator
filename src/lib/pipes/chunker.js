@@ -25,7 +25,11 @@ module.exports = class Chunker extends Transform {
     const items = this._last.split(/\r\n/)
     this._last = items.pop()
     items.forEach((item) => {
-      this.push(item)
+      let parsed
+      try {
+        parsed = JSON.parse(item)
+      } catch (e) {}
+      if (parsed.text) this.push({ tweet: parsed.text })
     })
     cb()
   }

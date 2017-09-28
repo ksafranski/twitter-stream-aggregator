@@ -8,7 +8,7 @@ describe('Chunker', () => {
       const chunker = new Chunker()
       const spy = sandbox.spy(chunker, 'push')
       chunker._transform('{"text":"bar"}\r\n{"text":"buzz"}', null, () => {
-        expect(spy.firstCall.args[0]).to.deep.equal(JSON.stringify({ text: 'bar' }))
+        expect(spy.firstCall.args[0]).to.deep.equal({ tweet: 'bar' })
         done()
       })
     })
