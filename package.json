@@ -6,9 +6,9 @@
   "scripts": {
     "lint": "standard --fix --verbose",
     "mocha": "mocha",
+    "mocha:watch": "$(npm bin)/nodemon --exec \"mocha || exit 1\"",
     "cover": "istanbul cover _mocha",
-    "test": "yarn run lint && yarn run cover",
-    "test:watch": "nodemon --exec \"mocha || exit 1\""
+    "test": "yarn run lint && yarn run cover"
   },
   "author": "Kent Safranski <fluidbyte>",
   "license": "ISC",
@@ -20,6 +20,7 @@
     "dirty-chai": "^2.0.1",
     "istanbul": "^0.4.5",
     "mocha": "^3.5.3",
+    "nodemon": "^1.12.1",
     "sinon": "^4.0.0",
     "sinon-chai": "^2.13.0",
     "standard": "^10.0.3"
