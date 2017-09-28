@@ -8,14 +8,14 @@ module.exports = class Echo extends Writable {
     opts.objectMode = true
     super(opts)
   }
-  
+
   /**
    * Writes data to console
    * @param {Object} data The data to output
    * @param {String} enc Data encoding
    * @param {Function} cb Callback
    */
-  _write(data, enc, cb) {
+  _write (data, enc, cb) {
     console.log(data)
     cb()
   }

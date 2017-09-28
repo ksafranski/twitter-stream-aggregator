@@ -8,7 +8,7 @@ describe('Chunker', () => {
       const chunker = new Chunker()
       const spy = sandbox.spy(chunker, 'push')
       chunker._transform('{"text":"bar"}\r\n{"text":"buzz"}', null, () => {
-        expect(spy.firstCall.args[0]).to.deep.equal(JSON.stringify({ text: "bar" }))
+        expect(spy.firstCall.args[0]).to.deep.equal(JSON.stringify({ text: 'bar' }))
         done()
       })
     })
@@ -20,7 +20,7 @@ describe('Chunker', () => {
       sandbox.stub(decoder, 'end').returns('{"text": "bar"}')
       chunker._flush(() => {
         expect(spy).to.be.calledOnce()
-        done()  
+        done()
       })
     })
   })
