@@ -12,6 +12,9 @@
   },
   "author": "Kent Safranski <fluidbyte>",
   "license": "ISC",
+  "dependencies": {
+    "request": "^2.83.0"
+  },
   "devDependencies": {
     "chai": "^4.1.2",
     "dirty-chai": "^2.0.1",
@@ -38,8 +41,5 @@
       "sandbox",
       "xit"
     ]
-  },
-  "dependencies": {
-    "twitter": "^1.7.1"
   }
 }

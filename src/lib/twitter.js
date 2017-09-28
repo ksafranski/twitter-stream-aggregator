@@ -1,21 +1,35 @@
-const Twitter = require('twitter')
-
-// Create new Twitter connection client
-const client = new Twitter({
-  consumer_key: process.env.TWITTER_CONSUMER_KEY,
-  consumer_secret: process.env.TWITTER_CONSUMER_SECRET,
-  access_token_key: process.env.TWITTER_ACCESS_TOKEN_KEY,
-  access_token_secret: process.env.TWITTER_ACCESS_TOKEN_SECRET
-})
+const request = require('request')
+const Chunker = require('./pipes/chunker')
+const Echo = require('./pipes/echo')
 
 module.exports = () => {
-  const stream = client.stream('statuses/sample');
-  stream.on('data', (event) => {
-    console.log('---')
-    console.log(event.text)
+
+  const req = request({
+    headers: {
+      'User-Agent': 'test-app, node.js',
+      'content-length': '0'
+    },
+    method: 'get',
+    url: 'https://stream.twitter.com/1.1/statuses/sample.json',
+    oauth: {
+      consumer_key : process.env.TWITTER_CONSUMER_KEY,
+      consumer_secret : process.env.TWITTER_CONSUMER_SECRET,
+      token : process.env.TWITTER_ACCESS_TOKEN_KEY,
+      token_secret : process.env.TWITTER_ACCESS_TOKEN_SECRET
+    }
   })
-   
-  stream.on('error', (error) => {
-    throw error
+
+  req
+    .pipe(new Chunker())
+    .pipe(new Echo())
+    
+  req.on('response', (res) => {
+    if (res.statusCode !== 200) {
+      throw new Error(`Connection failed with ${res.statusCode}`)
+    }
+  })
+  
+  req.on('error', (err) => {
+    throw new Error(`Connection failed: ${err.message}`)
   })
 }
