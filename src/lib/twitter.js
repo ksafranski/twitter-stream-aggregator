@@ -34,14 +34,20 @@ const twitter = {
 
   /**
    * Initializes stream and pipes
+   * @returns {Object} readable stream
    */
   stream: () => {
-    return twitter.req()
+    /* istanbul ignore next: best for an integration/system test */
+    const stream = twitter.req()
       .pipe(new Chunker())
       .pipe(new Echo())
-      .on('error', (err) => {
-        throw new Error(`Stream failed: ${err.message}`)
-      })
+
+    /* istanbul ignore next: best for an integration/system test */
+    stream.on('error', (err) => {
+      throw new Error(`Stream error: ${err.message}`)
+    })
+
+    return stream
   }
 }
 
