@@ -1,5 +1,5 @@
-const { Transform } = require('stream')
 /* eslint no-cond-assign: 0 */
+const { Transform } = require('stream')
 const regex = require('emoji-regex')()
 
 module.exports = class EmjoisFilter extends Transform {
