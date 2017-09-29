@@ -1,4 +1,3 @@
-/* eslint no-cond-assign: 0 */
 const { Transform } = require('stream')
 const regex = require('emoji-regex')()
 
