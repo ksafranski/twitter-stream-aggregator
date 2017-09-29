@@ -11,19 +11,24 @@ const fixtures = {
 
 describe('URLsFilter', () => {
   describe('_transform', () => {
-    it('adds array of all urls in a tweet to property `urls`', () => {
+    it('adds array of all urls in a tweet to property `urls`', (done) => {
       const inst = new URLsFilter()
       const spy = sandbox.spy(inst, 'push')
       // Has URLs
       inst._transform(fixtures.hasURLs, null, () => {
         expect(spy.firstCall.args[0].urls)
           .to.deep.equal([ 'https://www.google.com', 'http://www.twitter.com/foo' ])
+        done()
       })
-      // No URLs
-      spy.reset()
+    })
+    it('adds empty array to property `urls` if nor urls are found', (done) => {
+      const inst = new URLsFilter()
+      const spy = sandbox.spy(inst, 'push')
+      // Has URLs
       inst._transform(fixtures.noURLs, null, () => {
         expect(spy.firstCall.args[0].urls)
           .to.deep.equal([])
+        done()
       })
     })
   })
