@@ -1,5 +1,5 @@
 {
-  "name": "jha-twitter-project",
+  "name": "twitter-streaming-aggregator",
   "version": "0.0.1",
   "description": "Digest Twitter feed into meaningful data",
   "main": "index.js",

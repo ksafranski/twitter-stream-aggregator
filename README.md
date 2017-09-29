@@ -1,4 +1,4 @@
-# JH&A Twitter Project
+# Twitter Streaming & Aggregation
 
 ## Prerequisits
 
