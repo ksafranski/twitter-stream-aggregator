@@ -7,7 +7,9 @@ module.exports = class HashtagsFilter extends Transform {
   }
 
   _transform (data, encoding, cb) {
-    data.hashtags = []
+    const regexp = /(\s|^)#\w\w+\b/gm
+    const matches = data.tweet.match(regexp)
+    data.hashtags = matches ? matches.map((h) => h.trim().replace('#', '')) : []
     this.push(data)
     cb()
   }
