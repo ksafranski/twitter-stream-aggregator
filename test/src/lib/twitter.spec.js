@@ -1,7 +1,6 @@
 const twitter = require('src/lib/twitter')
 const request = require('request')
 const EventEmitter = require('events')
-const { Readable } = require('stream')
 
 describe('twitter', () => {
   describe('req', () => {

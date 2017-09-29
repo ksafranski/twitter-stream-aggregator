@@ -2,6 +2,11 @@ const request = require('request')
 const Chunker = require('./pipes/chunker')
 const Echo = require('./pipes/echo')
 
+const EmojisFilter = require('./pipes/filters/emojis')
+const HashtagsFilter = require('./pipes/filters/hashtags')
+const PhotosFilter = require('./pipes/filters/photos')
+const URLsFilter = require('./pipes/filters/urls')
+
 const twitter = {
   /**
    * Creates HTTP stream from twitter api
@@ -40,7 +45,25 @@ const twitter = {
     /* istanbul ignore next: best for an integration/system test */
     const stream = twitter.req()
       .pipe(new Chunker())
+      .pipe(new EmojisFilter())
+      .pipe(new HashtagsFilter())
+      .pipe(new PhotosFilter())
+      .pipe(new URLsFilter())
+      // Echo is for visibility
       .pipe(new Echo())
+
+    /**
+     * Aggregation:
+     * ---
+     * Total number of tweets received
+     * Average tweets per hour/minute/second
+     * Top emojis in tweets
+     * Percent of tweets that contains emojis
+     * Top hashtags
+     * Percent of tweets that contain a url
+     * Percent of tweets that contain a photo url (pic.twitter.com or instagram)
+     * Top domains of urls in tweets
+     */
 
     /* istanbul ignore next: best for an integration/system test */
     stream.on('error', (err) => {

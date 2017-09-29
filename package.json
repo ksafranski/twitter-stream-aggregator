@@ -13,6 +13,7 @@
   "author": "Kent Safranski <fluidbyte>",
   "license": "ISC",
   "dependencies": {
+    "emoji-regex": "^6.5.1",
     "request": "^2.83.0"
   },
   "devDependencies": {
