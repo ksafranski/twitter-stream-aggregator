@@ -32,7 +32,7 @@ These credentials should be added to the corresponding environment variables:
 
 To install all dependencies for the project, run `binci install`. This will install all production and development dependencies. To only install production dependencies run `binci install:production`.
 
-**Deterministic Dependencies**: The application uses [Yarn](https://yarnpkg.com/en/) to enforce package locking and deterministic dependency versioning. This is in attempt to prevent, and manage dependency versions to avoid conflicts or API changes that could lead to regressions in the codebase.
+**Deterministic Dependencies**: The application uses [Yarn](https://yarnpkg.com/en/) to enforce package locking and deterministic dependency versioning. This is in order to avoid conflicts or API changes that could lead to regressions in the codebase. The `binci upgrade` task utilizes Yarn's [`upgrade-interactive`](https://yarnpkg.com/en/docs/cli/upgrade-interactive) command to allow for deterministic management of dependency updates.
 
 ## Tasks
 
@@ -42,6 +42,7 @@ Tasks are defined in the [`binci.yml`](binci.yml) file and correspond closely to
 - `shell`: starts an interactive shell in the container (with services)
 - `install`: installs all development and production dependencies
 - `install:production`: installs only development dependencies
+- `upgrade`: interactively upgrade dependencies
 - `lint`: runs [StandardJS](https://standardjs.com/) linting on all files
 - `mocha`: runs the [Mocha](https://mochajs.org/) test-suite
 - `cover`: runs [Istanbul](https://istanbul.js.org/) test coverage
