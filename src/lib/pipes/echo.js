@@ -1,7 +1,7 @@
 const { Writable } = require('stream')
 
 /**
- * Outputs current data to console
+ * Outputs current stream data to console
  */
 module.exports = class Echo extends Writable {
   constructor (opts = {}) {

@@ -2,7 +2,7 @@ const unshort = require('url-unshort')()
 const Promise = require('bluebird')
 
 /**
- * Checks for an expands any t.co urls
+ * Checks for an expands any expandable urls
  * @params {Array} urls Collection of URLs to expand
  * @return {Object.<Promise>}
  */
