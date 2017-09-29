@@ -9,6 +9,7 @@ tasks:
   shell: /bin/sh
   install: yarn install
   install:production: yarn install --production
+  upgrade: yarn upgrade-interactive
   lint: yarn run lint
   mocha: yarn run mocha
   mocha:watch: yarn run mocha:watch
