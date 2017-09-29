@@ -5,6 +5,8 @@
 
 ## Prerequisits
 
+### Docker & Binci
+
 In order to create a consistent development environment, [Docker](https://www.docker.com) is utilized to containerize all aspects.
 
 In order to manage the Docker container(s), [Binci](https://github.com/binci/binci) is utilized. To install, run the following:
@@ -14,6 +16,17 @@ npm i binci -g
 ```
 
 _Note: Binci can also be installed without NodeJS as a prerequisit by installing one of the [binary packages](https://github.com/binci/binci#binaries)._
+
+### Environment Variables
+
+In order to read from the Twitter API, credentials must be acquired by [creating a new Twitter app](https://apps.twitter.com/).
+
+These credentials should be added to the corresponding environment variables:
+
+- `TWITTER_ACCESS_TOKEN_KEY`
+- `TWITTER_ACCESS_TOKEN_SECRET`
+- `TWITTER_CONSUMER_KEY`
+- `TWITTER_CONSUMER_SECRET`
 
 ## Getting Started
 
