@@ -9,13 +9,7 @@ module.exports = class EmjoisFilter extends Transform {
   }
 
   _transform (data, encoding, cb) {
-    let match
-    const emojis = []
-    while (match = regex.exec(data.tweet)) {
-      /* istanbul ignore else */
-      if (match[0]) emojis.push(match[0])
-    }
-    data.emojis = emojis
+    data.emojis = data.tweet.match(regex) || []
     this.push(data)
     cb()
   }
