@@ -8,6 +8,8 @@ h1, h2, h3 {
 
 .navbar {
   border-radius: 0;
+  box-shadow: 0 5px 20px 0 rgba(0,0,0,.3);
+  border-bottom: 2px solid #444;
 }
 
 .navbar-brand {
@@ -22,12 +24,18 @@ h1, h2, h3 {
 /* Panels */
 
 .panel-body {
-  box-shadow: 0 0 15px 0 rgba(0,0,0,.5);
+  box-shadow: 0 0 15px 0 rgba(0,0,0,.2);
+  border: 1px solid #464646;
+  border-top: 2px solid #666;
+  border-radius: 4px;
 }
 
 .panel-body > h2 {
   margin-top: 0;
   font-size: 18px;
+  padding-bottom: 10px;
+  margin-bottom: 15px;
+  border-bottom: 1px solid #4c4c4c;
 }
 
 .panel-body > h2 > i {
