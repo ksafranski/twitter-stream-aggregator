@@ -8,7 +8,7 @@ const EventEmitter = require('events')
 
 // Create emitter for twitter stream
 class TwitterEmitter extends EventEmitter {}
-const tweetStream = new TwitterEmitter()
+const tweetStreamEvents = new TwitterEmitter()
 
 const PORT = process.env.PORT || 8080
 const CLIENT_PATH = path.resolve(__dirname, '../client')
@@ -23,7 +23,7 @@ twitter.stream({
   // Flip to `true` to see stream in console
   debug: false
 }).on('data', (data) => {
-  tweetStream.emit('data', data)
+  tweetStreamEvents.emit('data', data)
 })
 
 // Listen on PORT
@@ -32,10 +32,23 @@ server.listen(PORT)
 // Serve static (client app)
 app.use(express.static(CLIENT_PATH))
 
+let numConnections = 0
+
 // Establish socket connections
 io.on('connection', (socket) => {
+  // Increment connection counter
+  numConnections++
+
+  // Decrement connection counter, check if stream should stop
+  socket.on('disconnect', () => {
+    numConnections--
+    if (numConnections <= 0) {
+      console.log('No clients connected')
+    }
+  })
+
   // On twitter events, emit data
-  tweetStream.on('data', (data) => {
+  tweetStreamEvents.on('data', (data) => {
     socket.emit('twitter', data)
   })
 })
