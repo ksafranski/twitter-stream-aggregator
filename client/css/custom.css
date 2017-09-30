@@ -1,1 +1,31 @@
 /* Custom CSS/Overrides */
+
+h1, h2, h3 {
+  font-weight: normal;
+}
+
+.navbar {
+  border-radius: 0;
+}
+
+.navbar-brand {
+  padding-top: 18px;
+  font-size: 22px;
+}
+
+.navbar-brand i {
+  margin-right: 8px;
+}
+
+.panel-body {
+  box-shadow: 0 0 15px 0 rgba(0,0,0,.5);
+}
+
+.panel-body > h2 {
+  margin-top: 0;
+  font-size: 18px;
+}
+
+.page-header > h1 > i, .panel-body > h2 > i {
+  margin-right: 8px;
+}
