@@ -1,9 +1,9 @@
-const { Writable } = require('stream')
+const { Transform } = require('stream')
 
 /**
  * Outputs current stream data to console
  */
-module.exports = class Echo extends Writable {
+module.exports = class Echo extends Transform {
   constructor (opts = {}) {
     opts.objectMode = true
     super(opts)
@@ -15,8 +15,9 @@ module.exports = class Echo extends Writable {
    * @param {String} enc Data encoding
    * @param {Function} cb Callback
    */
-  _write (data, enc, cb) {
+  _transform (data, enc, cb) {
     console.log(data)
+    this.push(data)
     cb()
   }
 }

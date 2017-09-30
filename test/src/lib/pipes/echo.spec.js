@@ -1,11 +1,15 @@
 const Echo = require('src/lib/pipes/echo')
 
 describe('Echo', () => {
-  it('writes data to console', () => {
-    const echo = new Echo()
-    const spy = sandbox.spy(console, 'log')
-    echo._write({ text: 'foo' }, null, () => {
-      expect(spy).to.be.calledWith({ text: 'foo' })
+  describe('_transform', () => {
+    it('writes data to console', () => {
+      const inst = new Echo()
+      const pushSpy = sandbox.spy(inst, 'push')
+      const logSpy = sandbox.spy(console, 'log')
+      inst._transform({ text: 'foo' }, null, () => {
+        expect(pushSpy).to.be.calledWith({ text: 'foo' })
+        expect(logSpy).to.be.calledWith({ text: 'foo' })
+      })
     })
   })
 })
