@@ -7,7 +7,7 @@
 
 ### Docker & Binci
 
-In order to create a consistent development environment, [Docker](https://www.docker.com) is utilized to containerize all aspects.
+In order to create a consistent development environment, [Docker](https://www.docker.com) is utilized to containerize the application.
 
 In order to manage the Docker container(s), [Binci](https://github.com/binci/binci) is utilized. To install, run the following:
 
@@ -27,6 +27,8 @@ These credentials should be added to the corresponding environment variables:
 - `TWITTER_ACCESS_TOKEN_SECRET`
 - `TWITTER_CONSUMER_KEY`
 - `TWITTER_CONSUMER_SECRET`
+
+These environment variables can be set on the host (local) system and will be automatically set on the container via the [`binci.yml`](./binci.yml)'s `env` property via the `<container-var>=${<host-var>}` convention.
 
 ## Getting Started
 
