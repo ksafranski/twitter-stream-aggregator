@@ -10,8 +10,10 @@ env:
 tasks:
   env: env | sort
   shell: /bin/sh
-  install: yarn install
-  install:production: yarn install --production
+  install: |
+    apk update && apk add git
+    yarn install
+    $(npm bin)/jspm install
   upgrade: yarn upgrade-interactive
   lint: yarn run lint
   mocha: yarn run mocha
