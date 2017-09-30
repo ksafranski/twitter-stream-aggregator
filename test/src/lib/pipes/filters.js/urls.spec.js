@@ -18,6 +18,8 @@ describe('URLsFilter', () => {
       inst._transform(fixtures.hasURLs, null, () => {
         expect(spy.firstCall.args[0].urls)
           .to.deep.equal([ 'https://www.google.com', 'http://www.twitter.com/foo' ])
+        expect(spy.firstCall.args[0].domains)
+          .to.deep.equal([ 'www.google.com', 'www.twitter.com' ])
         done()
       })
     })
@@ -27,6 +29,8 @@ describe('URLsFilter', () => {
       // Has URLs
       inst._transform(fixtures.noURLs, null, () => {
         expect(spy.firstCall.args[0].urls)
+          .to.deep.equal([])
+        expect(spy.firstCall.args[0].domains)
           .to.deep.equal([])
         done()
       })
