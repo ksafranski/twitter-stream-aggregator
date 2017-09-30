@@ -1,5 +1,6 @@
 import React from 'react'
 import TitleBar from './TitleBar'
+import Stream from './Stream'
 import { Grid, Row, Col, Panel } from 'react-bootstrap'
 
 export default class App extends React.Component {
@@ -34,6 +35,7 @@ export default class App extends React.Component {
             <Col md={12}>
               <Panel>
                 <h2><i className='fa fa-cog fa-spin' />Stream</h2>
+                <Stream />
               </Panel>
             </Col>
           </Row>
