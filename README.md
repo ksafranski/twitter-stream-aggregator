@@ -51,6 +51,14 @@ Tasks are defined in the [`binci.yml`](binci.yml) file and correspond closely to
 - `test:watch`: continuously runs (and reruns) test suite
 - `up`: starts the service
 
+## Notes
+
+This project demonstrates a number of concepts, primarily streaming of data and its application to meaningful consumer interfaces. The purpose of this project is not a production application, so many decisions were made based on this fact.
+
+**JSPM vs. Webpack**
+
+In-line with the project goals stated above, [JSPM](https://jspm.io/) was chosen over [Webpack](https://webpack.github.io/) based on its simplicity. Should the need arise to expand the project, JSPM can be easily removed and replaced with Webpack.
+
 ## License
 
 The code in this repository is distributed under the [ISC-Style License](https://opensource.org/licenses/ISC)
