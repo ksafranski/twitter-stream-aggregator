@@ -32,21 +32,8 @@ server.listen(PORT)
 // Serve static (client app)
 app.use(express.static(CLIENT_PATH))
 
-let numConnections = 0
-
 // Establish socket connections
 io.on('connection', (socket) => {
-  // Increment connection counter
-  numConnections++
-
-  // Decrement connection counter, check if stream should stop
-  socket.on('disconnect', () => {
-    numConnections--
-    if (numConnections <= 0) {
-      console.log('No clients connected')
-    }
-  })
-
   // On twitter events, emit data
   tweetStreamEvents.on('data', (data) => {
     socket.emit('twitter', data)
