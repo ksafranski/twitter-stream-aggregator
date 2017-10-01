@@ -5,7 +5,7 @@
 
 ![Screenshot](./screenshot.png)
 
-## Prerequisits
+## Prerequisites
 
 ### Docker & Binci
 
