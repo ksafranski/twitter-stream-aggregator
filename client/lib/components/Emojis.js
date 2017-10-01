@@ -46,13 +46,16 @@ export default class Emojis extends React.Component {
 
   render () {
     return (
-      <ListGroup>
-        { this.state.ranking.map((e, i) => (
-          <ListGroupItem key={i++}>
-            <strong>{this.state.emojis[e]}</strong> {e}
-          </ListGroupItem>
-        )) }
-      </ListGroup>
+      <div>
+        <h2><i className='fa fa-smile-o' />Emojis</h2>
+        <ListGroup>
+          { this.state.ranking.map((e, i) => (
+            <ListGroupItem key={i++}>
+              <strong>{this.state.emojis[e]}</strong> {e}
+            </ListGroupItem>
+          )) }
+        </ListGroup>
+      </div>
     )
   }
 }

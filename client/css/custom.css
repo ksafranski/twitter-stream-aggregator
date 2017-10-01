@@ -31,7 +31,7 @@ h1, h2, h3 {
   box-shadow: 0 0 10px 0 rgba(0,0,0,.9);
 }
 
-.panel-body > h2 {
+.panel-body h2 {
   margin-top: 0;
   font-size: 18px;
   padding-bottom: 10px;
@@ -39,14 +39,14 @@ h1, h2, h3 {
   border-bottom: 1px solid #4c4c4c;
 }
 
-.panel-body > h2 > i {
+.panel-body h2 > i {
   margin-right: 8px;
 }
 
 /* Stream */
 
 .tweet-stream {
-  margin: 0;
+  margin: 0 0 15px 0;
   padding: 10px;
   background-color: #1a1a1a;
   height: 500px;
@@ -68,7 +68,7 @@ h1, h2, h3 {
 
 .list-group {
   box-shadow: 0 0 10px 0 rgba(0,0,0,.4);
-  max-height: 250px;
+  max-height: 358px;
   overflow-y: scroll;
 }
 

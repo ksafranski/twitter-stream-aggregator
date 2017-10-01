@@ -87,44 +87,47 @@ export default class General extends React.Component {
 
   render () {
     return (
-      <ListGroup>
-        <ListGroupItem>
-          <strong>{this.state.total}</strong> Tweets
-        </ListGroupItem>
-        <ListGroupItem>
-          { this.state.pacer.pace === 0 ? (
-            <span>Calculating...</span>
-          ) : (
-            <ul className='list-time-stats'>
-              <li>
-                <strong>{this.state.perSec}</strong>/sec
-              </li>
-              <li>
-                <strong>{this.state.perMinute}</strong>/min
-              </li>
-              <li>
-                <strong>{this.state.perHour}</strong>/hr
-              </li>
-            </ul>
-          )}
-        </ListGroupItem>
-        <ListGroupItem>
-          <strong>{this.state.emojis}</strong> Emojis
-          ({ Math.ceil((this.state.emojis / this.state.total) * 100) || 0 }%)
-        </ListGroupItem>
-        <ListGroupItem>
-          <strong>{this.state.hashtags}</strong> Hashtags
-          ({ Math.ceil((this.state.hashtags / this.state.total) * 100) || 0 }%)
-        </ListGroupItem>
-        <ListGroupItem>
-          <strong>{this.state.links}</strong> Links
-          ({ Math.ceil((this.state.links / this.state.total) * 100) || 0 }%)
-        </ListGroupItem>
-        <ListGroupItem>
-          <strong>{this.state.photos}</strong> Images
-          ({ Math.ceil((this.state.photos / this.state.total) * 100) || 0 }%)
-        </ListGroupItem>
-      </ListGroup>
+      <div>
+        <h2><i className='fa fa-info-circle' />General</h2>
+        <ListGroup>
+          <ListGroupItem>
+            <strong>{this.state.total}</strong> Tweets
+          </ListGroupItem>
+          <ListGroupItem>
+            { this.state.pacer.pace === 0 ? (
+              <span>Calculating...</span>
+            ) : (
+              <ul className='list-time-stats'>
+                <li>
+                  <strong>{this.state.perSec}</strong>/sec
+                </li>
+                <li>
+                  <strong>{this.state.perMinute}</strong>/min
+                </li>
+                <li>
+                  <strong>{this.state.perHour}</strong>/hr
+                </li>
+              </ul>
+            )}
+          </ListGroupItem>
+          <ListGroupItem>
+            <strong>{this.state.emojis}</strong> Emojis
+            ({ Math.ceil((this.state.emojis / this.state.total) * 100) || 0 }%)
+          </ListGroupItem>
+          <ListGroupItem>
+            <strong>{this.state.hashtags}</strong> Hashtags
+            ({ Math.ceil((this.state.hashtags / this.state.total) * 100) || 0 }%)
+          </ListGroupItem>
+          <ListGroupItem>
+            <strong>{this.state.links}</strong> Links
+            ({ Math.ceil((this.state.links / this.state.total) * 100) || 0 }%)
+          </ListGroupItem>
+          <ListGroupItem>
+            <strong>{this.state.photos}</strong> Images
+            ({ Math.ceil((this.state.photos / this.state.total) * 100) || 0 }%)
+          </ListGroupItem>
+        </ListGroup>
+      </div>
     )
   }
 }

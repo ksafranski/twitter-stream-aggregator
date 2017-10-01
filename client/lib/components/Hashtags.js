@@ -45,13 +45,16 @@ export default class Hashtags extends React.Component {
 
   render () {
     return (
-      <ListGroup>
-        { this.state.ranking.map((h, i) => (
-          <ListGroupItem key={i++}>
-            <strong>{this.state.hashtags[h]}</strong> {h}
-          </ListGroupItem>
-        )) }
-      </ListGroup>
+      <div>
+        <h2><i className='fa fa-hashtag' />Hashtags</h2>
+        <ListGroup>
+          { this.state.ranking.map((h, i) => (
+            <ListGroupItem key={i++}>
+              <strong>{this.state.hashtags[h]}</strong> {h}
+            </ListGroupItem>
+          )) }
+        </ListGroup>
+      </div>
     )
   }
 }
