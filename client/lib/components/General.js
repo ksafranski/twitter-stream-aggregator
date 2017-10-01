@@ -8,6 +8,11 @@ export default class General extends React.Component {
 
     this.state = {
       start: Date.now(),
+      pacer: {
+        start: Date.now(),
+        count: 0,
+        pace: 0
+      },
       total: 0,
       perSec: 0,
       perMinute: 0,
@@ -34,16 +39,30 @@ export default class General extends React.Component {
     // Inc total
     const total = curStats.total + 1
 
-    // Calculate time-based stats
-    const rawPerSec = total / ((curTime - curStats.start) / 1000)
+    // Maintain pacer, track 5s intervals for determining real-time counts
+    let pacer
+    if (curTime - curStats.pacer.start < 5000) {
+      pacer = {
+        start: curStats.pacer.start,
+        count: curStats.pacer.count + 1,
+        pace: curStats.pacer.pace
+      }
+    } else {
+      pacer = {
+        start: Date.now(),
+        count: 0,
+        pace: curStats.pacer.count / 5
+      }
+    }
 
+    // Build new data for state
     const newData = {
       total,
-
+      pacer,
       // Time-based
-      perSec: Math.ceil(rawPerSec),
-      perMinute: Math.ceil(rawPerSec * 60),
-      perHour: Math.ceil(rawPerSec * 3600),
+      perSec: Math.ceil(pacer.pace),
+      perMinute: Math.ceil(pacer.pace * 60),
+      perHour: Math.ceil(pacer.pace * 3600),
 
       // Emojis
       hasEmojis: data.emojis.length ? curStats.hasEmojis + 1 : curStats.hasEmojis,
@@ -73,17 +92,21 @@ export default class General extends React.Component {
           <strong>{this.state.total}</strong> Tweets
         </ListGroupItem>
         <ListGroupItem>
-          <ul className='list-time-stats'>
-            <li>
-              <strong>{this.state.perSec}</strong>/sec
-            </li>
-            <li>
-              <strong>{this.state.perMinute}</strong>/min
-            </li>
-            <li>
-              <strong>{this.state.perHour}</strong>/hr
-            </li>
-          </ul>
+          { this.state.pacer.pace === 0 ? (
+            <span>Calculating...</span>
+          ) : (
+            <ul className='list-time-stats'>
+              <li>
+                <strong>{this.state.perSec}</strong>/sec
+              </li>
+              <li>
+                <strong>{this.state.perMinute}</strong>/min
+              </li>
+              <li>
+                <strong>{this.state.perHour}</strong>/hr
+              </li>
+            </ul>
+          )}
         </ListGroupItem>
         <ListGroupItem>
           <strong>{this.state.emojis}</strong> Emojis
