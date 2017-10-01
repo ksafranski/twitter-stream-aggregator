@@ -36,7 +36,8 @@ module.exports = class URLsFilter extends Transform {
       data.urls = expandedUrls
       data.domains = domains
       this.push(data)
-      cb()
+      // @TODO: funky double-calls here, need to investigate
+      try { cb() } catch (e) { /* no-op */ }
     }).catch(() => {
       // On error, push original data with empty arrays
       data.urls = []

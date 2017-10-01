@@ -6,6 +6,8 @@ const io = require('socket.io')(server)
 const twitter = require('./lib/twitter')
 const EventEmitter = require('events')
 
+let twitterStream
+
 // dev: hot module reloader
 require('./webpack_hmr')(app)
 
@@ -20,19 +22,21 @@ const CLIENT_PATH = path.resolve(__dirname, '../client')
  * Starts twitter stream
  * @returns {Object} stream
  */
-const startTwitterStream = () => twitter.stream({
-  // Apply filters
-  filters: [
-    'emojis',
-    'hashtags',
-    'urls'
-  ],
-  // Flip to `true` to see stream in console
-  debug: false
-})
+const startTwitterStream = () => {
+  twitterStream = twitter.stream({
+    // Apply filters
+    filters: [
+      'emojis',
+      'hashtags',
+      'urls'
+    ],
+    // Flip to `true` to see stream in console
+    debug: false
+  })
+}
 
 // Start Twitter Stream
-let twitterStream = startTwitterStream()
+startTwitterStream()
 
 // Handle data from stream
 twitterStream.on('data', (data) => {
@@ -41,7 +45,11 @@ twitterStream.on('data', (data) => {
 
 // Handle errors from stream
 twitterStream.on('error', (err) => {
+  console.log('--- ERROR ---')
   console.log(err)
+  console.log('--- RESTART ---')
+  twitterStream.destroy()
+  startTwitterStream()
 })
 
 // Listen on PORT
