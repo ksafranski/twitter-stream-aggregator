@@ -8,6 +8,7 @@ const EventEmitter = require('events')
 
 // Webpack hot reload
 if (process.env.NODE_ENV !== 'production') {
+  console.log('Starting webpack bundle with HMR...')
   const webpack = require('webpack')
   const webpackConfig = require('../webpack.config')
   const compiler = webpack(webpackConfig)
@@ -37,7 +38,7 @@ twitter.stream({
     'urls'
   ],
   // Flip to `true` to see stream in console
-  debug: true
+  debug: false
 }).on('data', (data) => {
   tweetStreamEvents.emit('data', data)
 })

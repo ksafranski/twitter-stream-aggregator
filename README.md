@@ -50,6 +50,7 @@ Tasks are defined in the [`binci.yml`](binci.yml) file and correspond closely to
 - `test`: runs all linting and coverage
 - `test:watch`: continuously runs (and reruns) test suite
 - `bundle`: bundles the client app with webpack
+- `dev`: Runs service with hot module reloading
 - `up`: starts the service
 
 ## Notes
