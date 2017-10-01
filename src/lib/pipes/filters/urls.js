@@ -30,14 +30,18 @@ module.exports = class URLsFilter extends Transform {
    * @param {Function} cb Callback
    */
   _transform (data, encoding, cb) {
-    const urls = data.tweet.match(/\bhttps?:\/\/\S+/gi) || []
+    let urls
+    try {
+      urls = data.tweet.match(/\bhttps?:\/\/\S+/gi) || []
+    } catch (e) {
+      urls = []
+    }
     urlExpander(urls).then((expandedUrls) => {
       const domains = expandedUrls.map(getHostname)
       data.urls = expandedUrls
       data.domains = domains
       this.push(data)
-      // @TODO: funky double-calls here, need to investigate
-      try { cb() } catch (e) { /* no-op */ }
+      cb()
     }).catch(() => {
       // On error, push original data with empty arrays
       data.urls = []

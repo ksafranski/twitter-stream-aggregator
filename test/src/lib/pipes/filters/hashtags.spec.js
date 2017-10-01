@@ -14,7 +14,13 @@ describe('HashtagsFilter', () => {
     it('adds array of all hashtags in a tweet to property `hashtags`', () => {
       const inst = new HashtagsFilter()
       const spy = sandbox.spy(inst, 'push')
+      // Bad data
+      inst._transform({}, null, () => {
+        expect(spy.firstCall.args[0].hashtags)
+          .to.deep.equal([])
+      })
       // Has hashtags
+      spy.reset()
       inst._transform(fixtures.hasHashtags, null, () => {
         expect(spy.firstCall.args[0].hashtags)
           .to.deep.equal([ 'foo', 'bar' ])

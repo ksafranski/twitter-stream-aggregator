@@ -19,6 +19,18 @@ const fixtures = {
 
 describe('URLsFilter', () => {
   describe('_transform', () => {
+    it('pushes an empty array on data read error', (done) => {
+      const inst = new URLsFilter()
+      const spy = sandbox.spy(inst, 'push')
+      // Has URLs
+      inst._transform({}, null, () => {
+        expect(spy.firstCall.args[0].urls)
+          .to.deep.equal([])
+        expect(spy.firstCall.args[0].domains)
+          .to.deep.equal([])
+        done()
+      })
+    })
     it('adds array of all urls in a tweet to property `urls`', (done) => {
       const inst = new URLsFilter()
       const spy = sandbox.spy(inst, 'push')

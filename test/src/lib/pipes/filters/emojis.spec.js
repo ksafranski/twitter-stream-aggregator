@@ -14,7 +14,13 @@ describe('EmojisFilter', () => {
     it('adds array of all emojis in a tweet to property `emojis`', () => {
       const inst = new EmojisFilter()
       const spy = sandbox.spy(inst, 'push')
+      // Bad data
+      inst._transform({}, null, () => {
+        expect(spy.firstCall.args[0].emojis)
+          .to.deep.equal([])
+      })
       // Has emojis
+      spy.reset()
       inst._transform(fixtures.hasEmojis, null, () => {
         expect(spy.firstCall.args[0].emojis)
           .to.deep.equal([ '\u{1F3F4}', '\u{1F469}' ])

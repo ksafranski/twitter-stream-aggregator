@@ -18,7 +18,11 @@ module.exports = class EmjoisFilter extends Transform {
    * @param {Function} cb Callback
    */
   _transform (data, encoding, cb) {
-    data.emojis = data.tweet.match(regex) || []
+    try {
+      data.emojis = data.tweet.match(regex) || []
+    } catch (e) {
+      data.emojis = []
+    }
     this.push(data)
     cb()
   }
