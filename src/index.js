@@ -16,8 +16,12 @@ const tweetStreamEvents = new TwitterEmitter()
 const PORT = process.env.PORT || 8080
 const CLIENT_PATH = path.resolve(__dirname, '../client')
 
-// Start twitter stream
-twitter.stream({
+/**
+ * Starts twitter stream
+ * @returns {Object} stream
+ */
+const startTwitterStream = () => twitter.stream({
+  // Apply filters
   filters: [
     'emojis',
     'hashtags',
@@ -25,8 +29,19 @@ twitter.stream({
   ],
   // Flip to `true` to see stream in console
   debug: false
-}).on('data', (data) => {
+})
+
+// Start Twitter Stream
+let twitterStream = startTwitterStream()
+
+// Handle data from stream
+twitterStream.on('data', (data) => {
   tweetStreamEvents.emit('data', data)
+})
+
+// Handle errors from stream
+twitterStream.on('error', (err) => {
+  console.log(`ERROR: ${err.message}`)
 })
 
 // Listen on PORT
