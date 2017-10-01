@@ -28,7 +28,8 @@ const startTwitterStream = () => {
     filters: [
       'emojis',
       'hashtags',
-      'urls'
+      'urls',
+      'photos'
     ],
     // Flip to `true` to see stream in console
     debug: false

@@ -7,8 +7,8 @@ describe('Chunker', () => {
     it('breaks apart twitter streams into chunks', (done) => {
       const chunker = new Chunker()
       const spy = sandbox.spy(chunker, 'push')
-      chunker._transform('{"text":"bar"}\r\n{"text":"buzz"}', null, () => {
-        expect(spy.firstCall.args[0]).to.deep.equal({ tweet: 'bar' })
+      chunker._transform('{"text":"bar","entities":"biz"}\r\n{"text":"buzz"}', null, () => {
+        expect(spy.firstCall.args[0]).to.deep.equal({ tweet: 'bar', entities: 'biz' })
         done()
       })
     })

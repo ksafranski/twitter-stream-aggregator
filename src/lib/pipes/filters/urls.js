@@ -1,5 +1,4 @@
 const { Transform } = require('stream')
-const urlExpander = require('../../utils/url_expander')
 const { URL } = require('url')
 
 /**
@@ -30,24 +29,15 @@ module.exports = class URLsFilter extends Transform {
    * @param {Function} cb Callback
    */
   _transform (data, encoding, cb) {
-    let urls
-    try {
-      urls = data.tweet.match(/\bhttps?:\/\/\S+/gi) || []
-    } catch (e) {
-      urls = []
+    data.urls = []
+    data.domains = []
+    if (data.entities.urls && data.entities.urls.length) {
+      data.entities.urls.forEach((u) => {
+        data.urls.push(u.expanded_url)
+        data.domains.push(getHostname(u.expanded_url))
+      })
     }
-    urlExpander(urls).then((expandedUrls) => {
-      const domains = expandedUrls.map(getHostname)
-      data.urls = expandedUrls
-      data.domains = domains
-      this.push(data)
-      cb()
-    }).catch(() => {
-      // On error, push original data with empty arrays
-      data.urls = []
-      data.domains = []
-      this.push(data)
-      cb()
-    })
+    this.push(data)
+    cb()
   }
 }
