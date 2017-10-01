@@ -5,6 +5,7 @@ import { Grid, Row, Col, Panel, FormGroup, FormControl } from 'react-bootstrap'
 import General from './General'
 import Emojis from './Emojis'
 import Hashtags from './Hashtags'
+import Links from './Links'
 
 export default class App extends React.Component {
   constructor (props, ctx) {
@@ -30,11 +31,12 @@ export default class App extends React.Component {
             <Col md={3}>
               <Panel>
                 <h2><i className='fa fa-list' />Stats Selector</h2>
-                <FormGroup controlId='formControlsSelect'>
+                <FormGroup>
                   <FormControl componentClass='select' placeholder='select' onChange={this.selectStat.bind(this)}>
                     <option value='general'>General</option>
                     <option value='emojis'>Emojis</option>
                     <option value='hashtags'>Hashtags</option>
+                    <option value='links'>Links</option>
                   </FormControl>
                 </FormGroup>
               </Panel>
@@ -47,6 +49,9 @@ export default class App extends React.Component {
                 )}
                 {this.state.currentPanel === 'hashtags' && (
                 <Hashtags />
+                )}
+                {this.state.currentPanel === 'links' && (
+                <Links />
                 )}
               </Panel>
             </Col>

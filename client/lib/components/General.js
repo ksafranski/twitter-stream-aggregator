@@ -29,7 +29,12 @@ export default class General extends React.Component {
   }
 
   componentDidMount () {
+    this._mounted = true
     socket.on('twitter', this.calculateStats.bind(this))
+  }
+
+  componentWillUnmount () {
+    this._mounted = false
   }
 
   calculateStats (data) {
@@ -82,7 +87,7 @@ export default class General extends React.Component {
     }
 
     // Set state
-    this.setState(newData)
+    if (this._mounted) this.setState(newData)
   }
 
   render () {

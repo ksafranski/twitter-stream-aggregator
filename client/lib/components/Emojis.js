@@ -13,7 +13,12 @@ export default class Emojis extends React.Component {
   }
 
   componentDidMount () {
+    this._mounted = true
     socket.on('twitter', this.calculateEmojis.bind(this))
+  }
+
+  componentWillUnmount () {
+    this._mounted = false
   }
 
   calculateEmojis (data) {
@@ -38,10 +43,12 @@ export default class Emojis extends React.Component {
     const ranking = Object.keys(curEmojis).sort((a, b) => curEmojis[a] - curEmojis[b]).reverse()
 
     // Set state
-    this.setState({
-      emojis: curEmojis,
-      ranking
-    })
+    if (this._mounted) {
+      this.setState({
+        emojis: curEmojis,
+        ranking
+      })
+    }
   }
 
   render () {

@@ -13,7 +13,12 @@ export default class Hashtags extends React.Component {
   }
 
   componentDidMount () {
+    this._mounted = true
     socket.on('twitter', this.calculateHashtags.bind(this))
+  }
+
+  componentWillUnmount () {
+    this._mounted = false
   }
 
   calculateHashtags (data) {
@@ -37,10 +42,12 @@ export default class Hashtags extends React.Component {
     const ranking = Object.keys(curHashtags).sort((a, b) => curHashtags[a] - curHashtags[b]).reverse()
 
     // Set state
-    this.setState({
-      hashtags: curHashtags,
-      ranking
-    })
+    if (this._mounted) {
+      this.setState({
+        hashtags: curHashtags,
+        ranking
+      })
+    }
   }
 
   render () {
