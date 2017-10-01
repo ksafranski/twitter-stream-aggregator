@@ -12,12 +12,18 @@ export default class General extends React.Component {
       perSec: 0,
       perMinute: 0,
       perHour: 0,
+      hasEmojis: 0,
       emojis: 0,
+      hasHashtags: 0,
       hashtags: 0,
+      hasLinks: 0,
       links: 0,
-      images: 0
+      hasPhotos: 0,
+      photos: 0
     }
+  }
 
+  componentDidMount () {
     socket.on('twitter', this.calculateStats.bind(this))
   }
 
@@ -30,35 +36,34 @@ export default class General extends React.Component {
 
     // Calculate time-based stats
     const rawPerSec = total / ((curTime - curStats.start) / 1000)
-    const perSec = Math.ceil(rawPerSec)
-    const perMinute = Math.ceil(rawPerSec * 60)
-    const perHour = Math.ceil(rawPerSec * 3600)
 
-    // Calculate totals
-    const emojis = data.emojis.length
-      ? curStats.emojis + data.emojis.length
-      : curStats.emojis
+    const newData = {
+      total,
 
-    const hashtags = data.hashtags.length
-      ? curStats.hashtags + data.hashtags.length
-      : curStats.hashtags
+      // Time-based
+      perSec: Math.ceil(rawPerSec),
+      perMinute: Math.ceil(rawPerSec * 60),
+      perHour: Math.ceil(rawPerSec * 3600),
 
-    const links = data.urls.length
-      ? curStats.links + data.urls.length
-      : curStats.links
+      // Emojis
+      hasEmojis: data.emojis.length ? curStats.hasEmojis + 1 : curStats.hasEmojis,
+      emojis: data.emojis.length ? curStats.emojis + data.emojis.length : curStats.emojis,
 
-    let images = curStats.images
-    // if (data.domains.length) {
-    //   data.domains.forEach((d) => {
-    //     //console.log(d)
-    //     if (d && d.indexOf('pic.twitter.com') >= 0) {
-    //       images + 1
-    //     }
-    //   })
-    // }
+      // Hashtags
+      hasHashtags: data.hashtags.length ? curStats.hasHashtags + 1 : curStats.hasHashtags,
+      hashtags: data.hashtags.length ? curStats.hashtags + data.hashtags.length : curStats.hashtags,
+
+      // Links
+      hasLinks: data.urls.length ? curStats.hasLinks + 1 : curStats.hasLinks,
+      links: data.urls.length ? curStats.links + data.urls.length : curStats.links,
+
+      // Photos
+      hasPhotos: data.urls.length ? curStats.hasPhotos + 1 : curStats.hasPhotos,
+      photos: data.photos.length ? curStats.photos + data.photos.length : curStats.photos
+    }
 
     // Set state
-    this.setState({ total, perSec, perMinute, perHour, emojis, hashtags, links, images })
+    this.setState(newData)
   }
 
   render () {
@@ -93,8 +98,8 @@ export default class General extends React.Component {
           ({ Math.ceil((this.state.links / this.state.total) * 100) || 0 }%)
         </ListGroupItem>
         <ListGroupItem>
-          <strong>{this.state.images}</strong> Images
-          ({ Math.ceil((this.state.images / this.state.total) * 100) || 0 }%)
+          <strong>{this.state.photos}</strong> Images
+          ({ Math.ceil((this.state.photos / this.state.total) * 100) || 0 }%)
         </ListGroupItem>
       </ListGroup>
     )
