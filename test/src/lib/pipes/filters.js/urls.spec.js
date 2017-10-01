@@ -1,4 +1,9 @@
-const URLsFilter = require('src/lib/pipes/filters/urls')
+const URLsFilter = proxyquire('src/lib/pipes/filters/urls', {
+  '../../utils/url_expander': (urls) => {
+    if (urls.indexOf('http://throw.me')) return require('src/lib/utils/url_expander')(urls)
+    return Promise.reject(new Error('throw'))
+  }
+})
 
 const fixtures = {
   hasURLs: {
@@ -6,6 +11,9 @@ const fixtures = {
   },
   noURLs: {
     tweet: 'tweet tweet'
+  },
+  throws: {
+    tweet: 'throw http://throw.me'
   }
 }
 
@@ -28,6 +36,18 @@ describe('URLsFilter', () => {
       const spy = sandbox.spy(inst, 'push')
       // Has URLs
       inst._transform(fixtures.noURLs, null, () => {
+        expect(spy.firstCall.args[0].urls)
+          .to.deep.equal([])
+        expect(spy.firstCall.args[0].domains)
+          .to.deep.equal([])
+        done()
+      })
+    })
+    it('pushes data when url expander throws', (done) => {
+      const inst = new URLsFilter()
+      const spy = sandbox.spy(inst, 'push')
+      // Throws
+      inst._transform(fixtures.throws, null, () => {
         expect(spy.firstCall.args[0].urls)
           .to.deep.equal([])
         expect(spy.firstCall.args[0].domains)

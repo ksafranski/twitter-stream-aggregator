@@ -1,11 +1,13 @@
 const path = require('path')
 const chai = require('chai')
+const proxyquire = require('proxyquire')
 const sinon = require('sinon')
 const schai = require('sinon-chai')
 const dchai = require('dirty-chai')
 const mod = require('module')
 
 // Set globals
+global.proxyquire = proxyquire
 global.sinon = sinon
 global.expect = chai.expect
 
