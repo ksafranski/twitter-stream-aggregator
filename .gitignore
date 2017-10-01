@@ -1,4 +1,4 @@
 node_modules/
 coverage/
-client/jspm_packages/
+client/dist/
 *.log

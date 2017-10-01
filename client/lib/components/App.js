@@ -34,7 +34,7 @@ export default class App extends React.Component {
           <Row>
             <Col md={12}>
               <Panel>
-                <h2><i className='fa fa-cog fa-spin' />Stream</h2>
+                <h2><i className='fa fa-cog fa-spin' />Live Stream</h2>
                 <Stream />
               </Panel>
             </Col>

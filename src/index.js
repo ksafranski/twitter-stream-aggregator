@@ -6,6 +6,22 @@ const io = require('socket.io')(server)
 const twitter = require('./lib/twitter')
 const EventEmitter = require('events')
 
+// Webpack hot reload
+if (process.env.NODE_ENV !== 'production') {
+  const webpack = require('webpack')
+  const webpackConfig = require('../webpack.config')
+  const compiler = webpack(webpackConfig)
+  app.use(require('webpack-dev-middleware')(compiler, {
+    publicPath: webpackConfig.output.publicPath,
+    contentBase: path.resolve(__dirname, '../client/src'),
+    hot: true,
+    quiet: false,
+    noInfo: false,
+    lazy: false
+  }))
+  app.use(require('webpack-hot-middleware')(compiler))
+}
+
 // Create emitter for twitter stream
 class TwitterEmitter extends EventEmitter {}
 const tweetStreamEvents = new TwitterEmitter()
@@ -21,7 +37,7 @@ twitter.stream({
     'urls'
   ],
   // Flip to `true` to see stream in console
-  debug: false
+  debug: true
 }).on('data', (data) => {
   tweetStreamEvents.emit('data', data)
 })

@@ -1,0 +1,28 @@
+const path = require('path')
+const webpack = require('webpack')
+const clientPath = path.resolve(__dirname, './client')
+
+module.exports = {
+  entry: [ './client/lib/main.js', 'webpack-hot-middleware/client?path=/__webpack_hmr' ],
+  output: {
+    path: clientPath,
+    publicPath: '/',
+    filename: 'bundle.js'
+  },
+  devtool: '#inline-source-map',
+  module: {
+    loaders: [
+      {
+        test: /.js?$/,
+        loader: 'babel-loader',
+        exclude: /(node_modules|server|test)/,
+        query: {
+          presets: [ 'es2015', 'stage-0', 'react' ]
+        }
+      }
+    ]
+  },
+  plugins: [
+    new webpack.HotModuleReplacementPlugin()
+  ]
+}

@@ -20,4 +20,5 @@ tasks:
   mocha:watch: yarn run mocha:watch
   cover: yarn run cover
   test: yarn run test
+  bundle: yarn run bundle
   up: node index.js

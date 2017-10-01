@@ -5,11 +5,6 @@ const requireDir = require('require-dir')
 
 const filters = requireDir('./pipes/filters')
 
-// const EmojisFilter = require('./pipes/filters/emojis')
-// const HashtagsFilter = require('./pipes/filters/hashtags')
-// const PhotosFilter = require('./pipes/filters/photos')
-// const URLsFilter = require('./pipes/filters/urls')
-
 const twitter = {
   /**
    * Creates HTTP stream from twitter api
@@ -56,6 +51,7 @@ const twitter = {
     const pipes = []
 
     // Add chunker to chunk original stream
+    // See http://4.bp.blogspot.com/-xzXREsO1cfU/UYfBXfQjtbI/AAAAAAAACDg/EajhZzjYCi0/s1600/Chunk+and+sloth+TV+STORE+ONLINE.jpg
     pipes.push(new Chunker())
 
     // Dynamically add filters from opts

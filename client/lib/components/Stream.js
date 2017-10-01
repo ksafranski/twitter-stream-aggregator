@@ -1,7 +1,8 @@
 import React from 'react'
 
 // Turns out this is a real pain to load as module, see <script> tags :\
-const io = window.io
+// const io = window.io
+import io from 'socket.io-client'
 
 export default class Stream extends React.Component {
   constructor (props, ctx) {
