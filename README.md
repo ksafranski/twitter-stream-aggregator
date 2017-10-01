@@ -1,7 +1,7 @@
 [![Travis branch](https://img.shields.io/travis/Fluidbyte/twitter-stream-aggregator/master.svg)](https://travis-ci.org/Fluidbyte/twitter-stream-aggregator/)
 [![Codecov](https://img.shields.io/codecov/c/github/Fluidbyte/twitter-stream-aggregator.svg)](https://codecov.io/gh/Fluidbyte/twitter-stream-aggregator)
 
-# Twitter Streaming & Aggregation
+# Twitter Stream & Aggregation
 
 ![Screenshot](./screenshot.png)
 
