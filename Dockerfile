@@ -1,8 +1,11 @@
 # Slim, Apline-based Node image
-FROM mhart/apline-node:8
+FROM mhart/alpine-node:8
 
 # Copy assets needed to serve application
-COPY src node_modules client index.js /app
+COPY src /app/src/
+COPY node_modules /app/node_modules/
+COPY client /app/client/ 
+COPY index.js /app/
 
 # Expose port
 EXPOSE 8080

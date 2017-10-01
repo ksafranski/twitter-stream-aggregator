@@ -76,6 +76,35 @@ This project demonstrates a number of concepts, primarily streaming of data and 
 
 The twitter stream is designed to be dynamically built by a series of available [`filters`](./src/lib/pipe/filters). Each of these filters is an independent `transform` which is attached to the stream via `pipe` to allow for the system to be easily expanded upon by simply adding more filters to parse the stream data.
 
+## Building Docker Image
+
+The project includes a [`Dockerfile`](./Dockerfile) to allow this system to be made into an image. To do so, run the following:
+
+1. Ensure dependencies are installed and the app is bundled: 
+
+```
+binci install bundle
+```
+
+2. From the directory, build the image: 
+
+```
+docker build . -t twitter-stream-app
+```
+
+3. Run the image with environment variables specified:
+
+```
+docker run --rm -d 
+  -e TWITTER_ACCESS_TOKEN_KEY=$TWITTER_ACCESS_TOKEN_KEY \
+  -e TWITTER_ACCESS_TOKEN_SECRET=$TWITTER_ACCESS_TOKEN_SECRET \
+  -e TWITTER_CONSUMER_KEY=$TWITTER_CONSUMER_KEY \
+  -e TWITTER_CONSUMER_SECRET=$TWITTER_CONSUMER_SECRET \ 
+  -e NODE_ENV=production \
+  -p 8080:8080 \
+  twitter-stream-app
+```
+
 ## License
 
 The code in this repository is distributed under the [ISC-Style License](https://opensource.org/licenses/ISC)
