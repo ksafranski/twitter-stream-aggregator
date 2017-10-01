@@ -51,7 +51,6 @@ const twitter = {
     const pipes = []
 
     // Add chunker to chunk original stream
-    // See http://4.bp.blogspot.com/-xzXREsO1cfU/UYfBXfQjtbI/AAAAAAAACDg/EajhZzjYCi0/s1600/Chunk+and+sloth+TV+STORE+ONLINE.jpg
     pipes.push(new Chunker())
 
     // Dynamically add filters from opts
@@ -68,11 +67,6 @@ const twitter = {
     // Loop over and add all pipes
     pipes.forEach((p) => {
       stream = stream.pipe(p)
-    })
-
-    /* istanbul ignore next: best for an integration/system test */
-    stream.on('error', (err) => {
-      throw new Error(`Stream error: ${err.message}`)
     })
 
     return stream

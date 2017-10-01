@@ -41,7 +41,7 @@ twitterStream.on('data', (data) => {
 
 // Handle errors from stream
 twitterStream.on('error', (err) => {
-  console.log(`ERROR: ${err.message}`)
+  console.log(err)
 })
 
 // Listen on PORT
