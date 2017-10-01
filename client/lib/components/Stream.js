@@ -1,8 +1,5 @@
 import React from 'react'
-
-// Turns out this is a real pain to load as module, see <script> tags :\
-// const io = window.io
-import io from 'socket.io-client'
+import socket from '../socket'
 
 export default class Stream extends React.Component {
   constructor (props, ctx) {
@@ -12,9 +9,6 @@ export default class Stream extends React.Component {
     this.state = {
       tweets: []
     }
-
-    // Create socket connection
-    const socket = io.connect()
 
     // Save from overloading the DOM
     const maxTweets = 30

@@ -2,6 +2,7 @@ import React from 'react'
 import TitleBar from './TitleBar'
 import Stream from './Stream'
 import { Grid, Row, Col, Panel } from 'react-bootstrap'
+import General from './General'
 
 export default class App extends React.Component {
   render () {
@@ -13,6 +14,7 @@ export default class App extends React.Component {
             <Col md={3}>
               <Panel>
                 <h2><i className='fa fa-info-circle' />General</h2>
+                <General />
               </Panel>
             </Col>
             <Col md={3}>
