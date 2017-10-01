@@ -3,6 +3,8 @@
 
 # Twitter Streaming & Aggregation
 
+![Screenshot](./screenshot.png)
+
 ## Prerequisits
 
 ### Docker & Binci
@@ -50,8 +52,13 @@ Tasks are defined in the [`binci.yml`](binci.yml) file and correspond closely to
 - `test`: runs all linting and coverage
 - `test:watch`: continuously runs (and reruns) test suite
 - `bundle`: bundles the client app with webpack
-- `dev`: runs service with hot module reloading
-- `up`: starts the service
+- `dev`: runs service with hot module reloading (exposes client)
+- `up`: starts the service (exposes client)
+
+
+## User Interface
+
+The application exposes a React client interface on `http://localhost:8080`. The application will always attempt a `bundle` operation on start, so please wait until Webpack sends a success message to the console.
 
 ## Notes
 
