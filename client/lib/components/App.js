@@ -3,6 +3,7 @@ import TitleBar from './TitleBar'
 import Stream from './Stream'
 import { Grid, Row, Col, Panel } from 'react-bootstrap'
 import General from './General'
+import Emojis from './Emojis'
 
 export default class App extends React.Component {
   render () {
@@ -20,6 +21,7 @@ export default class App extends React.Component {
             <Col md={3}>
               <Panel>
                 <h2><i className='fa fa-smile-o' />Emojis</h2>
+                <Emojis />
               </Panel>
             </Col>
             <Col md={3}>

@@ -67,7 +67,9 @@ h1, h2, h3 {
 /* List Groups */
 
 .list-group {
-  box-shadow: 0 0 10px 0 rgba(0,0,0,.4)
+  box-shadow: 0 0 10px 0 rgba(0,0,0,.4);
+  max-height: 250px;
+  overflow-y: scroll;
 }
 
 .list-group-item {
