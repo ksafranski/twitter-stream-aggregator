@@ -32,7 +32,15 @@ These credentials should be added to the corresponding environment variables:
 
 These environment variables can be set on the host (local) system and will be automatically set on the container via the [`binci.yml`](./binci.yml)'s `env` property via the `<container-var>=${<host-var>}` convention.
 
-## Getting Started
+## Quick Start
+
+```
+binci install up
+```
+
+This will run dependency installation and stand up the service for access at `http://localhost:8080`.
+
+## Development
 
 To install all dependencies for the project, run `binci install`. This will install all production and development dependencies.
 
