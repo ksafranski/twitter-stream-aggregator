@@ -36,6 +36,7 @@ describe('URLsFilter', () => {
       const spy = sandbox.spy(inst, 'push')
       // Has URLs
       inst._transform(fixtures.hasURLs, null, () => {
+        console.log('domains', spy.firstCall.args[0].domains)
         expect(spy.firstCall.args[0].urls)
           .to.deep.equal([ 'https://www.google.com', 'http://www.twitter.com/foo' ])
         expect(spy.firstCall.args[0].domains)

@@ -30,7 +30,7 @@ module.exports = class Chunker extends Transform {
         parsed = JSON.parse(item)
       } catch (e) {}
       /* istanbul ignore else */
-      if (parsed.text && typeof parsed.text === 'string') this.push({ tweet: parsed.text })
+      if (parsed.text && typeof parsed.text === 'string') this.push({ tweet: parsed.text, entities: parsed.entities })
     })
     cb()
   }
