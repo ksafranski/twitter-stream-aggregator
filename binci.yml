@@ -19,4 +19,7 @@ tasks:
   test: yarn run test
   bundle: yarn run bundle
   dev: node index.js
-  up: export NODE_ENV=production && node index.js
+  up: |
+    export NODE_ENV=production
+    yarn run bundle
+    node index.js
