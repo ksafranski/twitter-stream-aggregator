@@ -4,6 +4,7 @@ import Stream from './Stream'
 import { Grid, Row, Col, Panel } from 'react-bootstrap'
 import General from './General'
 import Emojis from './Emojis'
+import Hashtags from './Hashtags'
 
 export default class App extends React.Component {
   render () {
@@ -27,6 +28,7 @@ export default class App extends React.Component {
             <Col md={3}>
               <Panel>
                 <h2><i className='fa fa-hashtag' />Hashtags</h2>
+                <Hashtags />
               </Panel>
             </Col>
             <Col md={3}>
