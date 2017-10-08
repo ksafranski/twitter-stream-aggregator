@@ -5,6 +5,7 @@ const server = require('http').Server(app)
 const io = require('socket.io')(server)
 const twitter = require('./lib/twitter')
 const EventEmitter = require('events')
+const esWriter = require('./lib/esWriter')
 
 let twitterStream
 
@@ -67,5 +68,5 @@ io.on('connection', (socket) => {
   })
 })
 
-// Log out to indicate server start
-console.log(`Service running over ${PORT}`)
+// Stream to Elasticsearch
+esWriter(twitterStream)

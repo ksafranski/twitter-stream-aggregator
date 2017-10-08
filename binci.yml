@@ -1,4 +1,12 @@
 from: mhart/alpine-node:8
+services:
+  - es_kibana:
+      from: nshou/elasticsearch-kibana
+      env:
+        - ES_JAVA_OPTS=-Xms256m -Xmx256m
+      expose:
+        - 9200:9200
+        - 5601:5601
 expose:
   - 8080:8080
 env:
@@ -7,6 +15,10 @@ env:
   - TWITTER_ACCESS_TOKEN_SECRET=${TWITTER_ACCESS_TOKEN_SECRET}
   - TWITTER_CONSUMER_KEY=${TWITTER_CONSUMER_KEY}
   - TWITTER_CONSUMER_SECRET=${TWITTER_CONSUMER_SECRET}
+  - ES_DEFAULT_INDEX=twitter
+before: |
+  export ES_CONN=$ES_KIBANA_PORT_5601_TCP_ADDR
+  export ES_PORT=$ES_KIBANA_PORT_9200_TCP_PORT
 tasks:
   env: env | sort
   shell: /bin/sh

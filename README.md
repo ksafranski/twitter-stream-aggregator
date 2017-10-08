@@ -40,6 +40,12 @@ binci install up
 
 This will run dependency installation and stand up the service for access at `http://localhost:8080`.
 
+## ElasticSearch & Kibana
+
+The system spins up [ElasticSearch & Kibana](https://www.elastic.co/) for storing (via the stream) and visualizing data. On start (`binci up` or `binci dev`) the system will wait for the connection then startup the stream.
+
+To access Kibana, navigate to `http://localhost:5601`. The system automatically sets up Kibana to use the `twitter` index by default.
+
 ## Development
 
 To install all dependencies for the project, run `binci install`. This will install all production and development dependencies.
@@ -100,6 +106,8 @@ docker run --rm -d
   -e TWITTER_ACCESS_TOKEN_SECRET=$TWITTER_ACCESS_TOKEN_SECRET \
   -e TWITTER_CONSUMER_KEY=$TWITTER_CONSUMER_KEY \
   -e TWITTER_CONSUMER_SECRET=$TWITTER_CONSUMER_SECRET \ 
+  -e ES_CONN={IP-ADDRESS-OF-ES-INSTANCE} \
+  -e ES_PORT={PORT-OF-ES-INSTANCE} \
   -e NODE_ENV=production \
   -p 8080:8080 \
   twitter-stream-app
