@@ -19,17 +19,16 @@ module.exports = class ESTransform extends Transform {
    * @param {Function} cb Callback
    */
   _transform (data, enc, cb) {
-    const record = {
+    // Simplify data
+    if (data.entities) delete data.entities
+    // Add timestamp
+    data.timestamp = Date.now()
+    this.push({
       index: esIndex,
       type: 'chunk',
       id: crypto.randomBytes(20).toString('hex'),
       body: data
-    }
-    // Simplify our data
-    if (record.body.entities) delete record.body.entities
-    // Add timestamp
-    record.body.timestamp = Date.now()
-    this.push(record)
+    })
     cb()
   }
 }
