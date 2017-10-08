@@ -1,6 +1,8 @@
 const { Transform } = require('stream')
 const crypto = require('crypto')
 
+const esIndex = process.env.ES_DEFAULT_INDEX || 'twitter'
+
 /**
  * Outputs current stream data to console
  */
@@ -18,11 +20,15 @@ module.exports = class ESTransform extends Transform {
    */
   _transform (data, enc, cb) {
     const record = {
-      index: 'twitter',
+      index: esIndex,
       type: 'chunk',
       id: crypto.randomBytes(20).toString('hex'),
       body: data
     }
+    // Simplify our data
+    if (record.body.entities) delete record.body.entities
+    // Add timestamp
+    record.body.timestamp = Date.now()
     this.push(record)
     cb()
   }
