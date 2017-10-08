@@ -40,6 +40,12 @@ binci install up
 
 This will run dependency installation and stand up the service for access at `http://localhost:8080`.
 
+## ElasticSearch & Kibana
+
+The system spins up [ElasticSearch & Kibana](https://www.elastic.co/) for storing (via the stream) and visualizing data. On start (`binci up` or `binci dev`) the system will wait for the connection then startup the stream.
+
+To access Kibana, navigate to `http://localhost:5601`. The system automatically sets up Kibana to use the `twitter` index by default.
+
 ## Development
 
 To install all dependencies for the project, run `binci install`. This will install all production and development dependencies.
